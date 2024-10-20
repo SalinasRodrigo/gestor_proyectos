@@ -1,14 +1,16 @@
+import { useState } from 'react';
 import './App.css'
 import { Graph } from './Graph'
 import { MyForm } from './MyForm'
 
 function App() {
-  
-  //const [count, setCount] = useState(0)
+  const [nodos, setNodos] = useState([]);
+  const [aristas, setAristas] = useState([]);
 
   return (
     <>
-      <MyForm/>
+      <Graph nodos={nodos} aristas={aristas}/>
+      <MyForm nodos={nodos} setNodos={setNodos} aristas={aristas} setAristas={setAristas}/>
     </>
   )
 }

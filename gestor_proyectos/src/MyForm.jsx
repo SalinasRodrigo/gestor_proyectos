@@ -1,9 +1,8 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
 import './MyForm.css'
 
-export const MyForm = () => {
-  const [nodos, setNodos] = useState([]);
-  const [aristas, setAristas] = useState([]);
+export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
