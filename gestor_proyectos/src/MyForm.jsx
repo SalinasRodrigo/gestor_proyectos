@@ -21,14 +21,13 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
       },
     ];
     setNodos(newNodos);
-    console.log(newNodos);
 
     //Crear aristas
+    const newAristas = [...aristas];
     let seleccionados = event.target.querySelectorAll(
       'input[type="checkbox"]:checked'
     );
     if (seleccionados.length > 0) {
-      const newAristas = [...aristas];
       seleccionados.forEach((element) => {
         const arista = {
           source: element.value,
@@ -37,11 +36,32 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
           label: `${element.value}-${nodo.id}`,
         };
         newAristas.push(arista);
+        const deleteIndex = newAristas.findIndex((e) => e.id == `${element.value}-${nodos[1].id}`)
+        if(deleteIndex>0){
+          newAristas.splice(deleteIndex, 1)
+        }
       });
       console.log(newAristas);
       setAristas(newAristas);
+      
+    }else{
+      const arista = {
+        source: nodos[0].id,
+        target: nodo.id,
+        id: `${nodos[0].id}-${nodo.id}`,
+        label: `${nodos[0].id}-${nodo.id}`,
+      };
+      newAristas.push(arista);
+      setAristas(newAristas);
     }
-
+    const arista = {
+      source: nodo.id,
+      target: nodos[1].id,
+      id: `${nodo.id}-${nodos[1].id}`,
+      label: `${nodo.id}-${nodos[1].id}`,
+    };
+    newAristas.push(arista);
+    setAristas(newAristas);
     event.target.reset();
     return;
   };

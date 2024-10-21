@@ -4,7 +4,16 @@ import { Graph } from './Graph'
 import { MyForm } from './MyForm'
 
 function App() {
-  const [nodos, setNodos] = useState([]);
+  const [nodos, setNodos] = useState([
+    {
+      id: "inicio",
+      label: "inicio",
+    },
+    {
+      id: "final",
+      label: "final",
+    },
+  ]);
   const [aristas, setAristas] = useState([]);
 
   return (
