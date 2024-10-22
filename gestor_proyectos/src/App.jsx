@@ -6,12 +6,26 @@ import { MyForm } from './MyForm'
 function App() {
   const [nodos, setNodos] = useState([
     {
-      id: "inicio",
+      id: "0",
       label: "inicio",
+      duracion: 0,
+      int_temp: null,
+      fin_temp: null,
+      int_tard: null,
+      fin_tard: null,
+      sucesores: [],
+      predecesores: [],
     },
     {
-      id: "final",
+      id: "1",
       label: "final",
+      duracion: 0,
+      int_temp: null,
+      fin_temp: null,
+      int_tard: null,
+      fin_tard: null,
+      sucesores: [],
+      predecesores: [],
     },
   ]);
   const [aristas, setAristas] = useState([]);
