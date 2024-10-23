@@ -14,6 +14,7 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
     const nodo = {
       id: nodos.length.toString(),
       label: event.target.nodo.value,
+      subLabel:event.target.duracion.value,
       duracion: parseInt(event.target.duracion.value),
       int_temp: null,
       fin_temp: null,
