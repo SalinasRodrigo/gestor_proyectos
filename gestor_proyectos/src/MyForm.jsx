@@ -1,9 +1,20 @@
 /* eslint-disable react/prop-types */
 import { cmp } from './cpm';
-import './MyForm.css'
+//import './MyForm.css'
 
 export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
-  
+  const mystyle = {
+    margin: "20px",
+    backgroundColor: "aliceblue",
+    borderColor: "black",
+    borderWidth: "25px",
+    color: "black",
+    boxShadow: "0px 0px 10px black",
+    borderRadius: "0.5rem",
+    padding: "10px 20px",
+    position: "absolute",
+    left: "0px",
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -111,7 +122,7 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="add-form">
+    <form onSubmit={handleSubmit} style={mystyle} className="add-form">
       <label htmlFor="inp-nodo">Agregar un nodo</label>
       <input type="text" name="nodo" id="inp-nodo" />
       <label htmlFor="inp-duracion">Duracion</label>
