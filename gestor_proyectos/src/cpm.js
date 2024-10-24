@@ -1,7 +1,8 @@
-export const cmp = ({ nodos }) => {
+export const cmp = ({ nodos, setNodos }) => {
   console.log(nodos);
   temprano(nodos, nodos[0], 0);
   tardio(nodos, nodos[1], nodos[1].fin_temp);
+  camino (nodos, setNodos)
 };
 
 function temprano(nodos, nodo, fin_anter) {
@@ -34,4 +35,13 @@ function tardio(nodos, nodo, int_anterior) {
   });
 }
 
-function camino(nodos) {}
+function camino(nodos, setNodos) {
+  nodos.forEach((nodo) => {
+    if (nodo.int_temp - nodo.int_tard == 0){
+      console.log(nodo)
+      nodo.fill = "#f44336"
+    } 
+  })
+  const clone = structuredClone(nodos )
+  setNodos(clone)
+}

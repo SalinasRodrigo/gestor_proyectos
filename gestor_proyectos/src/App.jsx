@@ -8,6 +8,7 @@ function App() {
     {
       id: "0",
       label: "inicio",
+      fill: '#9fc5e8',
       duracion: 0,
       subLabel:`0`,
       int_temp: null,
@@ -21,6 +22,7 @@ function App() {
     {
       id: "1",
       label: "final",
+      fill: '#9fc5e8',
       duracion: 0,
       subLabel:`0`,
       int_temp: null,

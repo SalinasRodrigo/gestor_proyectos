@@ -16,6 +16,7 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
       label: event.target.nodo.value,
       subLabel:event.target.duracion.value,
       duracion: parseInt(event.target.duracion.value),
+      fill: '#9fc5e8',
       int_temp: null,
       fin_temp: null,
       int_tard: null,
@@ -105,7 +106,7 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
   };
 
   const handleCPM = () =>{
-    cmp({nodos})
+    cmp({nodos, setNodos})
     console.log(nodos)
   }
 
