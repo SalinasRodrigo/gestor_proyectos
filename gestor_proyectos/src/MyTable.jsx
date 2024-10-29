@@ -27,7 +27,7 @@ export const MyTable = ({ nodos }) => {
             <td>{nodo.fin_tard}</td>
             <td>
               {nodo.predecesores.length > 0 &&
-                nodo.predecesores.map((element) => nodos[element].label)}
+                nodo.predecesores.map((element) => nodos[element].label + ' ')}
             </td>
             <td>{nodo.fill === "#f44336" ? "si" : "no"}</td>
           </tr>
