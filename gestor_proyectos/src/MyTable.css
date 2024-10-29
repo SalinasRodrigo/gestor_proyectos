@@ -1,0 +1,40 @@
+table {
+  position: absolute;
+  top: 70dvh;
+  left: 0;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  box-shadow: 0 3px 1.5px rgba(0, 0, 0, 0.25);
+  border-radius: 0.2rem;
+  margin: 0 20px;
+  color: black;
+}
+
+.content-table thead tr {
+  background-color: #2a6475;
+  color: #ffffff;
+  text-align: left;
+}
+
+.content-table th,
+.content-table td {
+  text-align: center;
+  padding: 12px 15px;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+  background-color: #ccccccd8;
+}
+
+.table-body {
+  display: block;
+  max-height: 23dvh;
+  overflow-y: auto;
+}
+
+.content-table thead,
+.table-body tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}

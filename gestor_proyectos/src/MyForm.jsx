@@ -1,33 +1,33 @@
 /* eslint-disable react/prop-types */
-import { cmp } from './cpm';
-//import './MyForm.css'
+import { cmp } from "./cpm";
+import "./MyForm.css";
 
-export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
-  const mystyle = {
-    margin: "20px",
-    backgroundColor: "aliceblue",
-    borderColor: "black",
-    borderWidth: "25px",
-    color: "black",
-    boxShadow: "0px 0px 10px black",
-    borderRadius: "0.5rem",
-    padding: "10px 20px",
-    position: "absolute",
-    left: "0px",
-  };
+export const MyForm = ({ nodos, setNodos, aristas, setAristas }) => {
+  // const mystyle = {
+  //   margin: "20px",
+  //   backgroundColor: "aliceblue",
+  //   borderColor: "black",
+  //   borderWidth: "25px",
+  //   color: "black",
+  //   boxShadow: "0px 0px 10px black",
+  //   borderRadius: "0.5rem",
+  //   padding: "10px 20px",
+  //   position: "absolute",
+  //   left: "0px",
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (nodos.find((element) => element.id == event.target.nodo.value)) {
+    if (nodos.find((element) => element.label == event.target.nodo.value)) {
       return;
     }
     //crear nodo
     const nodo = {
       id: nodos.length.toString(),
       label: event.target.nodo.value,
-      subLabel:event.target.duracion.value,
+      subLabel: event.target.duracion.value,
       duracion: parseInt(event.target.duracion.value),
-      fill: '#9fc5e8',
+      fill: "#9fc5e8",
       int_temp: null,
       fin_temp: null,
       int_tard: null,
@@ -51,7 +51,7 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
     let seleccionados = event.target.querySelectorAll(
       'input[type="checkbox"]:checked'
     );
-  
+
     if (seleccionados.length > 0) {
       //se iteran los predecesores seleccionados
       seleccionados.forEach((element) => {
@@ -64,29 +64,31 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
         };
         newAristas.push(arista);
 
-        const index = newNodos.findIndex((e)=> e.id == element.value);
+        const index = newNodos.findIndex((e) => e.id == element.value);
         //eliminamos la arista que conecta el predecesor con el final
-        const deleteIndex = newAristas.findIndex((e) => e.id == `${element.value}-${nodos[1].id}`)
-        if(deleteIndex>0){
-          newAristas.splice(deleteIndex, 1)
-          const deleteEdgeIndex = newNodos[index].sucesores.findIndex((e) => e == "1")
-          newNodos[index].sucesores.splice(deleteEdgeIndex, 1) //eliminamos el nodo final de los sucesores
-          const deleteEndIndex = newNodos[1].predecesores.findIndex((e) => e == element.value)
-          newNodos[1].predecesores.splice(deleteEndIndex,1)
+        const deleteIndex = newAristas.findIndex(
+          (e) => e.id == `${element.value}-${nodos[1].id}`
+        );
+        if (deleteIndex > 0) {
+          newAristas.splice(deleteIndex, 1);
+          const deleteEdgeIndex = newNodos[index].sucesores.findIndex(
+            (e) => e == "1"
+          );
+          newNodos[index].sucesores.splice(deleteEdgeIndex, 1); //eliminamos el nodo final de los sucesores
+          const deleteEndIndex = newNodos[1].predecesores.findIndex(
+            (e) => e == element.value
+          );
+          newNodos[1].predecesores.splice(deleteEndIndex, 1);
         }
 
-        nodo.predecesores.push(element.value) //agregamos el predecesor al arreglo del nodo
-        
+        nodo.predecesores.push(element.value); //agregamos el predecesor al arreglo del nodo
+
         //agregamos el nuevo nodo como sucesor de su predecesor
-        
-        
-        newNodos[index].sucesores.push(nodo.id)
-        
-        
+
+        newNodos[index].sucesores.push(nodo.id);
       });
       setAristas(newAristas);
-      
-    }else{
+    } else {
       const arista = {
         source: nodos[0].id,
         target: nodo.id,
@@ -94,8 +96,8 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
         label: `${nodos[0].id}-${nodo.id}`,
       };
       //agregamos el nodo inicio como predecesor
-      nodo.predecesores.push("0")
-      newNodos[0].sucesores.push(nodo.id)
+      nodo.predecesores.push("0");
+      newNodos[0].sucesores.push(nodo.id);
       newAristas.push(arista);
       setAristas(newAristas);
     }
@@ -107,8 +109,8 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
       label: `${nodo.id}-${nodos[1].id}`,
     };
     //agregamos el nodo final como sucesor
-    nodo.sucesores.push("1")
-    newNodos[1].predecesores.push(nodo.id)
+    nodo.sucesores.push("1");
+    newNodos[1].predecesores.push(nodo.id);
     newAristas.push(arista);
     setAristas(newAristas);
     event.target.reset();
@@ -116,35 +118,41 @@ export const MyForm = ({nodos, setNodos, aristas, setAristas}) => {
     return;
   };
 
-  const handleCPM = () =>{
-    cmp({nodos, setNodos})
-    console.log(nodos)
-  }
+  const handleCPM = () => {
+    cmp({ nodos, setNodos });
+    console.log(nodos);
+  };
 
   return (
-    <form onSubmit={handleSubmit} style={mystyle} className="add-form">
-      <label htmlFor="inp-nodo">Agregar un nodo</label>
-      <input type="text" name="nodo" id="inp-nodo" />
-      <label htmlFor="inp-duracion">Duracion</label>
-      <input type="number" name="duracion" id="inp-duracion" />
-      <div>
-        <label htmlFor="inp-arista">Agregar relación</label>
-        {nodos.length > 0 ? (
-          nodos.map((nodo, index) => (
-            <div key={`${nodo.id}-${index}`}>
-              <label htmlFor={`${nodo.id}-${index}`}>{nodo.label}</label>
-              <input
-                type="checkbox"
-                name={nodo.id}
-                id={`${nodo.id}-${index}`}
-                value={nodo.id}
-              />
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
+    <form onSubmit={handleSubmit} className="add-form">
+      <div className="nodo-values">
+        <fieldset className="form-field">
+          <legend>Agregar un nodo</legend>
+          <input type="text" name="nodo" id="inp-nodo" required />
+        </fieldset>
+        <fieldset className="form-field">
+          <legend>Duracion</legend>
+          <input type="number" name="duracion" id="inp-duracion" required/>
+        </fieldset>
       </div>
+      {nodos.length > 2 && (
+        <fieldset className="inp-arista">
+          <legend>Agregar predecesor</legend>
+          <div className="aristas">
+            {nodos.slice(2).map((nodo, index) => (
+              <div key={`${nodo.id}-${index}`} className="checkbox-item">
+                <label htmlFor={`${nodo.id}-${index}`}>{nodo.label}</label>
+                <input
+                  type="checkbox"
+                  name={nodo.id}
+                  id={`${nodo.id}-${index}`}
+                  value={nodo.id}
+                />
+              </div>
+            ))}
+          </div>
+        </fieldset>
+      )}
       <input type="submit" value="Agregar" />
       <input type="button" value="CPM" onClick={handleCPM} />
     </form>

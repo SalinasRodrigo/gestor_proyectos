@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css'
 import { Graph } from './Graph'
 import { MyForm } from './MyForm'
+import { MyTable } from './MyTable';
 
 function App() {
   const [nodos, setNodos] = useState([
@@ -39,6 +40,7 @@ function App() {
     <>
       <Graph nodos={nodos} aristas={aristas}/>
       <MyForm nodos={nodos} setNodos={setNodos} aristas={aristas} setAristas={setAristas}/>
+      <MyTable nodos={nodos}/>
     </>
   )
 }
