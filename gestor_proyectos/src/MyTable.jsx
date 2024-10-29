@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import './MyTable.css'
+import "./MyTable.css";
 
-export const MyTable = ({nodos}) => {
-
-
+export const MyTable = ({ nodos }) => {
   return (
-    <table className='content-table'>
+    <table className="content-table">
       <thead>
         <tr>
           <th>Nodo</th>
@@ -27,12 +25,14 @@ export const MyTable = ({nodos}) => {
             <td>{nodo.fin_temp}</td>
             <td>{nodo.int_tard}</td>
             <td>{nodo.fin_tard}</td>
-            <td>{nodo.predecesores.join('-')}</td>
-            <td>{nodo.fill === "#f44336" ? 'si' : 'no'}</td>
+            <td>
+              {nodo.predecesores.length > 0 &&
+                nodo.predecesores.map((element) => nodos[element].label)}
+            </td>
+            <td>{nodo.fill === "#f44336" ? "si" : "no"}</td>
           </tr>
         ))}
       </tbody>
     </table>
-
-  )
-}
+  );
+};
