@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { cmp } from "./cpm";
-import "./Myform.css";
+import "./MyForm.css";
 
 export const MyForm = ({ nodos, setNodos, aristas, setAristas }) => {
   // const mystyle = {
